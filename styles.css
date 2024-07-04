@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333;
+    padding: 1em;
+}
+
+h1 {
+    margin-bottom: 2em;
+    color: wheat;
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    background-color: black;
+    padding: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: .5em;
+    width: 100%;
+    max-width: 300px; 
+    aspect-ratio: 1; 
+    border: 20px outset #f0da00;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 246, 228);
+    border-radius: .1em;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.cell:before {
+    content: "";
+    display: block;
+    padding-bottom: 100%; /* Forces the aspect ratio of 1:1 */
+}
+
+.cell.X {
+    font-size: 3em;
+    color: red;
+    animation: appearX 0.3s ease-in-out;
+}
+
+.cell.O {
+    font-size: 3em;
+    color: black;
+    animation: appearO 0.3s ease-in-out;
+}
+
+@keyframes appearX {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+@keyframes appearO {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+#resetButton {
+    margin-top: 2em;
+    padding: .2em 2em;
+    font-size: 2em;
+    cursor: pointer;
+    background-color: #888888;
+    border: none;
+    border-radius: 2em;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#resetButton:hover {
+    background-color: #bbb;
+}
+
+.info-box {
+    position: fixed;
+    top: 50%;
+    right: -250px; /* Hide initially, only show a small part */
+    width: 250px;
+    height: 150px;
+    transform: translateY(-50%);
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s;
+    cursor: pointer;
+    border-left: 1em solid #f0da00;
+}
+
+.info-box p {
+    font-size: large;
+}
+
+.info-box:hover {
+    right: 0;
+}
+
+.info-content {
+    display: none;
+}
+
+.info-box:hover .info-content {
+    display: block;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 1.5em;
+    }
+    
+    .cell {
+        font-size: 1.5em;
+    }
+    
+    #resetButton {
+        font-size: 1.2em;
+        padding: .2em 1em;
+    }
+
+    .info-box {
+        display: none;
+    }
+}
